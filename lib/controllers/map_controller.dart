@@ -54,17 +54,14 @@ class MapController extends GetxController {
     final longitudeText = longitudeController.text;
 
     if (name.isEmpty || latitudeText.isEmpty || longitudeText.isEmpty) {
-      Get.snackbar(
-        'Missing Information',
-        'Please fill in all fields.',
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.white,
-        colorText: Colors.black,
-        borderRadius: 8,
-        margin: EdgeInsets.all(10),
-        icon: Icon(Icons.warning, color: Colors.red),
-        duration: Duration(seconds: 3),
-      );
+      showSnackbar('Missing Information', 'Please fill in all fields.');
+      return;
+    }
+
+    if (_containsMultipleDots(latitudeText) ||
+        _containsMultipleDots(longitudeText)) {
+      showSnackbar(
+          'Invalid Input', 'Latitude and Longitude can only contain one dot.');
       return;
     }
 
@@ -81,19 +78,16 @@ class MapController extends GetxController {
         updateMarkers();
         incrementProgress();
       } else {
-        Get.snackbar(
+        showSnackbar(
           'Invalid Location',
           'This location is outside Islamabad. Please add a location within Islamabad.',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.white,
-          colorText: Colors.black,
-          borderRadius: 8,
-          margin: EdgeInsets.all(10),
-          icon: Icon(Icons.warning, color: Colors.red),
-          duration: Duration(seconds: 3),
         );
       }
     }
+  }
+
+  bool _containsMultipleDots(String text) {
+    return text.split('.').length > 2;
   }
 
   bool _isLocationInIslamabad(double latitude, double longitude) {
@@ -124,6 +118,20 @@ class MapController extends GetxController {
       );
     });
     update();
+  }
+
+  void showSnackbar(String title, String message) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.white,
+      colorText: Colors.black,
+      borderRadius: 8,
+      margin: EdgeInsets.all(10),
+      icon: Icon(Icons.warning, color: Colors.red),
+      duration: Duration(seconds: 3),
+    );
   }
 
   @override
