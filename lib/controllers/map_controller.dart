@@ -5,9 +5,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class MapController extends GetxController {
   late GoogleMapController googleMapController;
   var isMapExpanded = false.obs;
-  var currentProgress = 1.obs; 
+  var currentProgress = 1.obs;
   final int totalSpots = 6;
-  final RxSet<Marker> markers = <Marker>{}.obs; 
+  final RxSet<Marker> markers = <Marker>{}.obs;
 
   final TextEditingController restaurantNameController =
       TextEditingController();
@@ -54,14 +54,33 @@ class MapController extends GetxController {
     final longitude = double.tryParse(longitudeController.text);
 
     if (name.isNotEmpty && latitude != null && longitude != null) {
-      restaurants[currentProgress.value] = Restaurant(
-        name: name,
-        latitude: latitude,
-        longitude: longitude,
-      );
-      updateMarkers();
-      incrementProgress();
+      if (_isLocationInIslamabad(latitude, longitude)) {
+        restaurants[currentProgress.value] = Restaurant(
+          name: name,
+          latitude: latitude,
+          longitude: longitude,
+        );
+        updateMarkers();
+        incrementProgress();
+      } else {
+        Get.snackbar('Invalid Location',
+            'The location is not in Islamabad. Please add a location in Islamabad.',
+            snackPosition: SnackPosition.TOP, backgroundColor: Colors.white);
+      }
     }
+  }
+
+  bool _isLocationInIslamabad(double latitude, double longitude) {
+    // Define the bounding box for Islamabad (roughly)
+    const double minLat = 33.5;
+    const double maxLat = 33.9;
+    const double minLng = 72.8;
+    const double maxLng = 73.3;
+
+    return latitude >= minLat &&
+        latitude <= maxLat &&
+        longitude >= minLng &&
+        longitude <= maxLng;
   }
 
   void updateMarkers() {
