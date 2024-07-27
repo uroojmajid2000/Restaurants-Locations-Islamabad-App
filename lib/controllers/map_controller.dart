@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapController extends GetxController {
   late GoogleMapController googleMapController;
@@ -103,7 +106,12 @@ class MapController extends GetxController {
         longitude <= maxLng;
   }
 
-  void updateMarkers() {
+  Future<void> updateMarkers() async {
+    final BitmapDescriptor customIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(size: Size(25, 25)),
+        // 'assets/restaurant.png',
+        'assets/location-pin.png');
+
     markers.clear();
     restaurants.forEach((key, restaurant) {
       markers.add(
@@ -114,6 +122,7 @@ class MapController extends GetxController {
             title: restaurant.name,
             snippet: '${restaurant.latitude}, ${restaurant.longitude}',
           ),
+          icon: customIcon, // Use the custom icon here
         ),
       );
     });
