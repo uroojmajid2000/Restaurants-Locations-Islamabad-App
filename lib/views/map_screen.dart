@@ -25,12 +25,14 @@ class MapScreen extends StatelessWidget {
                       : Get.height / 2,
                   child: GoogleMap(
                     initialCameraPosition: CameraPosition(
-                      target: LatLng(37.7749, -122.4194),
+                      target: LatLng(33.6844, 73.0479),
                       zoom: 12,
                     ),
                     onMapCreated: (GoogleMapController googleMapController) {
                       controller.onMapCreated(googleMapController);
+                      controller.updateMarkers();
                     },
+                    markers: controller.markers,
                   ),
                 ),
                 GestureDetector(
@@ -54,7 +56,6 @@ class MapScreen extends StatelessWidget {
                     : Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 5),
@@ -70,18 +71,14 @@ class MapScreen extends StatelessWidget {
                                 onTap: () {
                                   controller.incrementProgress();
                                 },
-                                child: Icon(Icons.arrow_forward)
-                                
-                                ),
+                                child: Icon(Icons.arrow_forward)),
                             SizedBox(height: 5),
                             Row(
                               children: [
                                 CustomLinearProgressIndicator(
                                   progress: controller.progressPercentage,
                                 ),
-                                SizedBox(
-                                  width: 4,
-                                ),
+                                SizedBox(width: 4),
                                 Text(
                                   '${controller.currentProgress.value}/6 SPOTS visited',
                                 ),
@@ -124,7 +121,9 @@ class MapScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             CustomButton(
-                              onTap: () {},
+                              onTap: () {
+                                controller.addOrUpdateLocation();
+                              },
                               text: "Add or Update Location",
                             )
                           ],
