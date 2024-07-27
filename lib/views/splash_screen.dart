@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 4), () {
+    Future.delayed(Duration(seconds: 5), () {
       Get.offNamed('/map');
     });
 

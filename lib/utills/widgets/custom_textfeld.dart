@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
             bottomLeft: Radius.circular(10),
             bottomRight: Radius.circular(10),
           ),
-          borderSide: BorderSide(color: Colors.black, width: 1),
+          borderSide: BorderSide(color: Colors.grey, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.only(
@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
             bottomLeft: Radius.circular(10),
             bottomRight: Radius.circular(10),
           ),
-          borderSide: BorderSide(color: Colors.black, width: 1),
+          borderSide: BorderSide(color: Colors.grey, width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.only(
@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
             bottomLeft: Radius.circular(10),
             bottomRight: Radius.circular(10),
           ),
-          borderSide: BorderSide(color: Colors.black, width: 1),
+          borderSide: BorderSide(color: Colors.grey, width: 1),
         ),
       ),
     );

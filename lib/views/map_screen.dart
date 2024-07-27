@@ -71,7 +71,10 @@ class MapScreen extends StatelessWidget {
                                 onTap: () {
                                   controller.incrementProgress();
                                 },
-                                child: Icon(Icons.arrow_forward)),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.grey,
+                                )),
                             SizedBox(height: 5),
                             Row(
                               children: [
@@ -81,13 +84,22 @@ class MapScreen extends StatelessWidget {
                                 SizedBox(width: 4),
                                 Text(
                                   '${controller.currentProgress.value}/6 SPOTS visited',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 18),
                             Row(
                               children: [
-                                Expanded(child: Text("Restaurant Name")),
+                                Expanded(
+                                    child: Text(
+                                  "Restaurant Name",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                )),
                                 Expanded(
                                     flex: 2,
                                     child: CustomTextField(
@@ -97,10 +109,16 @@ class MapScreen extends StatelessWidget {
                                     )),
                               ],
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 9),
                             Row(
                               children: [
-                                Expanded(child: Text("Latitude")),
+                                Expanded(
+                                    child: Text(
+                                  "Latitude",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                )),
                                 Expanded(
                                     flex: 2,
                                     child: CustomTextField(
@@ -109,10 +127,16 @@ class MapScreen extends StatelessWidget {
                                         inputType: TextInputType.number)),
                               ],
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 9),
                             Row(
                               children: [
-                                Expanded(child: Text("Longitude")),
+                                Expanded(
+                                    child: Text(
+                                  "Longitude",
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                )),
                                 Expanded(
                                     flex: 2,
                                     child: CustomTextField(
@@ -121,13 +145,14 @@ class MapScreen extends StatelessWidget {
                                         inputType: TextInputType.number)),
                               ],
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 18),
                             CustomButton(
                               onTap: () {
                                 controller.addOrUpdateLocation();
                               },
                               text: "Add or Update Location",
-                            )
+                            ),
+                            SizedBox(height: 18),
                           ],
                         ),
                       )
