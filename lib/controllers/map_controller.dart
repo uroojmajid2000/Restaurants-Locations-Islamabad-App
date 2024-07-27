@@ -50,10 +50,28 @@ class MapController extends GetxController {
 
   void addOrUpdateLocation() {
     final name = restaurantNameController.text;
-    final latitude = double.tryParse(latitudeController.text);
-    final longitude = double.tryParse(longitudeController.text);
+    final latitudeText = latitudeController.text;
+    final longitudeText = longitudeController.text;
 
-    if (name.isNotEmpty && latitude != null && longitude != null) {
+    if (name.isEmpty || latitudeText.isEmpty || longitudeText.isEmpty) {
+      Get.snackbar(
+        'Missing Information',
+        'Please fill in all fields.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white,
+        colorText: Colors.black,
+        borderRadius: 8,
+        margin: EdgeInsets.all(10),
+        icon: Icon(Icons.warning, color: Colors.red),
+        duration: Duration(seconds: 3),
+      );
+      return;
+    }
+
+    final latitude = double.tryParse(latitudeText);
+    final longitude = double.tryParse(longitudeText);
+
+    if (latitude != null && longitude != null) {
       if (_isLocationInIslamabad(latitude, longitude)) {
         restaurants[currentProgress.value] = Restaurant(
           name: name,
@@ -63,9 +81,17 @@ class MapController extends GetxController {
         updateMarkers();
         incrementProgress();
       } else {
-        Get.snackbar('Invalid Location',
-            'The location is not in Islamabad. Please add a location in Islamabad.',
-            snackPosition: SnackPosition.TOP, backgroundColor: Colors.white);
+        Get.snackbar(
+          'Invalid Location',
+          'This location is outside Islamabad. Please add a location within Islamabad.',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.white,
+          colorText: Colors.black,
+          borderRadius: 8,
+          margin: EdgeInsets.all(10),
+          icon: Icon(Icons.warning, color: Colors.red),
+          duration: Duration(seconds: 3),
+        );
       }
     }
   }
