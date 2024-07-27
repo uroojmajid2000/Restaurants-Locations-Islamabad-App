@@ -93,6 +93,7 @@ class MapScreen extends StatelessWidget {
                                     child: CustomTextField(
                                       controller:
                                           controller.restaurantNameController,
+                                      inputType: TextInputType.text,
                                     )),
                               ],
                             ),
@@ -103,8 +104,9 @@ class MapScreen extends StatelessWidget {
                                 Expanded(
                                     flex: 2,
                                     child: CustomTextField(
-                                      controller: controller.latitudeController,
-                                    )),
+                                        controller:
+                                            controller.latitudeController,
+                                        inputType: TextInputType.number)),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -114,9 +116,9 @@ class MapScreen extends StatelessWidget {
                                 Expanded(
                                     flex: 2,
                                     child: CustomTextField(
-                                      controller:
-                                          controller.longitudeController,
-                                    )),
+                                        controller:
+                                            controller.longitudeController,
+                                        inputType: TextInputType.number)),
                               ],
                             ),
                             SizedBox(height: 20),
