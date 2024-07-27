@@ -94,7 +94,6 @@ class MapController extends GetxController {
   }
 
   bool _isLocationInIslamabad(double latitude, double longitude) {
-    // Define the bounding box for Islamabad (roughly)
     const double minLat = 33.5;
     const double maxLat = 33.9;
     const double minLng = 72.8;
@@ -109,7 +108,7 @@ class MapController extends GetxController {
   Future<void> updateMarkers() async {
     final BitmapDescriptor customIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(size: Size(25, 25)),
-        // 'assets/restaurant.png',
+    
         'assets/location-pin.png');
 
     markers.clear();
@@ -122,7 +121,7 @@ class MapController extends GetxController {
             title: restaurant.name,
             snippet: '${restaurant.latitude}, ${restaurant.longitude}',
           ),
-          icon: customIcon, // Use the custom icon here
+          icon: customIcon, 
         ),
       );
     });

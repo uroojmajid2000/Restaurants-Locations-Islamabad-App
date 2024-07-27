@@ -37,16 +37,7 @@ class SplashScreen extends StatelessWidget {
               SizedBox(
                 height: 5,
               ),
-              // Text(
-              //   "IN",
-              //   style: TextStyle(
-              //       color: Colors.red,
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 18),
-              // ),
-              // SizedBox(
-              //   height: 5,
-              // ),
+             
               Text(
                 "ISLAMABAD",
                 style: TextStyle(

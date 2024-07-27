@@ -1,4 +1,4 @@
-// routes.dart
+
 import 'package:get/get.dart';
 import 'package:restaurants_locations/controllers/map_controller.dart';
 import 'package:restaurants_locations/views/map_screen.dart';
